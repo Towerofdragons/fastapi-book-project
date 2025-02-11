@@ -5,7 +5,6 @@ services:
     build: .
     container_name: fastapi_project
     restart: always
-    
     ports:
       - "8000:8000"
 
