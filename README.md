@@ -42,7 +42,7 @@ fastapi-book-project/
 - FastAPI
 - Pydantic
 - pytest
-- uvicorn
+- uvicor
 
 ## Installation
 
