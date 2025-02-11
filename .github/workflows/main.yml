@@ -59,7 +59,7 @@ jobs:
       - name: Deploy Application
         run: |
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} <<EOF
-            cd /fastapi-book-project
+            cd fastapi-book-project
             git pull
             docker-compose down
             docker-compose up --build -d
