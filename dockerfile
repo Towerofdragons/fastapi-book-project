@@ -2,7 +2,7 @@
 FROM python:3.10-slim
 
 # Set the working directory inside the container
-WORKDIR /fastapi-book-project
+WORKDIR fastapi-book-project
 
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
