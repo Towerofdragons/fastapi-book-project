@@ -10,12 +10,12 @@ permissions:
 
 jobs:
   test:
-    name: Run pytest
+    name: test
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout to m
+      - name: Checkout to repo
         uses: actions/checkout@v4
       
       - name: Set up Python 3.10
@@ -38,3 +38,28 @@ jobs:
       - name: Test with pytest
         run: |
           pytest  tests/test_books.py
+
+  deploy:
+    name: deploy
+    needs: test  
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to repo
+        uses: actions/checkout@v4
+
+       - name: Setup SSH Connection
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy Application
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} <<EOF
+            cd /fastapi-book-project
+            git pull
+            docker-compose down
+            docker-compose up --build -d
+          EOF
