@@ -10,7 +10,9 @@ services:
     restart: always
     ports:
       - "8000:8000"
-
+    networks:
+      - app_network
+      
   nginx:
     image: nginx:latest
     container_name: nginx_proxy
@@ -21,3 +23,5 @@ services:
       - "80:80"
     depends_on:
       - fastapi_app
+    networks:
+      - app_network
