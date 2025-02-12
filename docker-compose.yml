@@ -1,5 +1,8 @@
 version: '3.8'
 
+networks:
+  app_network:
+  
 services:
   fastapi_app:
     build: .
