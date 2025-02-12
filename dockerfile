@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir --upgrade pip && pip install -r requirements.txt
 # Copy the application files
 COPY . .
 
-# Expose the required port (default for FastAPI is 8000)
+# Expose the required port
 EXPOSE 8000
 
 # Set the FastAPI entry point
